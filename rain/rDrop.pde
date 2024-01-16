@@ -1,11 +1,12 @@
 class Drop {
   float x = random(width);
-  float y = random(-500,-100);
+  float y = random(400,800);
   // dybde på dråber
   float z = random(0, 20);
   // forskellig længde på dråber ift dybde
   float len = map(z, 0, 20, 10, 20);
-  float yspeed = map(z, 0, 20, 5, 10);
+  // negative værdier ift hvis regnen falder ned
+  float yspeed = map(z, 0, 20, -5, -10);
   
   void fall() {
     // y koordinat + y hastighed
@@ -15,10 +16,10 @@ class Drop {
     // y hastighed + tyngdekraft
     yspeed = yspeed + gravity;
     
-    if (y > height) {
+    if (y < 0) {
       // dråbe starter forfra
-      y = random(-200,-100);
-      yspeed = map(z, 0, 20, 5, 10);
+      y = random(400,800);
+      yspeed = map(z, 0, 20, -5, -10);
     }
   }
   void show() {
